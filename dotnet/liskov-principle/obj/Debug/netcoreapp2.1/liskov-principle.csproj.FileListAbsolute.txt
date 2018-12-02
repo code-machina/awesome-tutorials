@@ -1,0 +1,11 @@
+d:\largo\dotnet\liskov-principle\bin\Debug\netcoreapp2.1\liskov-principle.deps.json
+d:\largo\dotnet\liskov-principle\bin\Debug\netcoreapp2.1\liskov-principle.runtimeconfig.json
+d:\largo\dotnet\liskov-principle\bin\Debug\netcoreapp2.1\liskov-principle.runtimeconfig.dev.json
+d:\largo\dotnet\liskov-principle\bin\Debug\netcoreapp2.1\liskov-principle.dll
+d:\largo\dotnet\liskov-principle\bin\Debug\netcoreapp2.1\liskov-principle.pdb
+d:\largo\dotnet\liskov-principle\obj\Debug\netcoreapp2.1\liskov-principle.csprojAssemblyReference.cache
+d:\largo\dotnet\liskov-principle\obj\Debug\netcoreapp2.1\liskov-principle.csproj.CoreCompileInputs.cache
+d:\largo\dotnet\liskov-principle\obj\Debug\netcoreapp2.1\liskov-principle.AssemblyInfoInputs.cache
+d:\largo\dotnet\liskov-principle\obj\Debug\netcoreapp2.1\liskov-principle.AssemblyInfo.cs
+d:\largo\dotnet\liskov-principle\obj\Debug\netcoreapp2.1\liskov-principle.dll
+d:\largo\dotnet\liskov-principle\obj\Debug\netcoreapp2.1\liskov-principle.pdb

@@ -1,0 +1,11 @@
+D:\largo\dotnet\dotnet-console-simple\bin\Debug\netcoreapp2.1\dotnet-console-simple.deps.json
+D:\largo\dotnet\dotnet-console-simple\bin\Debug\netcoreapp2.1\dotnet-console-simple.runtimeconfig.json
+D:\largo\dotnet\dotnet-console-simple\bin\Debug\netcoreapp2.1\dotnet-console-simple.runtimeconfig.dev.json
+D:\largo\dotnet\dotnet-console-simple\bin\Debug\netcoreapp2.1\dotnet-console-simple.dll
+D:\largo\dotnet\dotnet-console-simple\bin\Debug\netcoreapp2.1\dotnet-console-simple.pdb
+D:\largo\dotnet\dotnet-console-simple\obj\Debug\netcoreapp2.1\dotnet-console-simple.csprojAssemblyReference.cache
+D:\largo\dotnet\dotnet-console-simple\obj\Debug\netcoreapp2.1\dotnet-console-simple.csproj.CoreCompileInputs.cache
+D:\largo\dotnet\dotnet-console-simple\obj\Debug\netcoreapp2.1\dotnet-console-simple.AssemblyInfoInputs.cache
+D:\largo\dotnet\dotnet-console-simple\obj\Debug\netcoreapp2.1\dotnet-console-simple.AssemblyInfo.cs
+D:\largo\dotnet\dotnet-console-simple\obj\Debug\netcoreapp2.1\dotnet-console-simple.dll
+D:\largo\dotnet\dotnet-console-simple\obj\Debug\netcoreapp2.1\dotnet-console-simple.pdb

@@ -1,0 +1,11 @@
+D:\largo\dotnet\open-close-principle\bin\Debug\netcoreapp2.1\open-close-principle.deps.json
+D:\largo\dotnet\open-close-principle\bin\Debug\netcoreapp2.1\open-close-principle.runtimeconfig.json
+D:\largo\dotnet\open-close-principle\bin\Debug\netcoreapp2.1\open-close-principle.runtimeconfig.dev.json
+D:\largo\dotnet\open-close-principle\bin\Debug\netcoreapp2.1\open-close-principle.dll
+D:\largo\dotnet\open-close-principle\bin\Debug\netcoreapp2.1\open-close-principle.pdb
+D:\largo\dotnet\open-close-principle\obj\Debug\netcoreapp2.1\open-close-principle.csprojAssemblyReference.cache
+D:\largo\dotnet\open-close-principle\obj\Debug\netcoreapp2.1\open-close-principle.csproj.CoreCompileInputs.cache
+D:\largo\dotnet\open-close-principle\obj\Debug\netcoreapp2.1\open-close-principle.AssemblyInfoInputs.cache
+D:\largo\dotnet\open-close-principle\obj\Debug\netcoreapp2.1\open-close-principle.AssemblyInfo.cs
+D:\largo\dotnet\open-close-principle\obj\Debug\netcoreapp2.1\open-close-principle.dll
+D:\largo\dotnet\open-close-principle\obj\Debug\netcoreapp2.1\open-close-principle.pdb
