@@ -1,0 +1,11 @@
+d:\largo\dotnet\decorator-pattern\obj\Debug\netcoreapp2.1\decorator-pattern.csprojAssemblyReference.cache
+d:\largo\dotnet\decorator-pattern\obj\Debug\netcoreapp2.1\decorator-pattern.csproj.CoreCompileInputs.cache
+d:\largo\dotnet\decorator-pattern\obj\Debug\netcoreapp2.1\decorator-pattern.AssemblyInfoInputs.cache
+d:\largo\dotnet\decorator-pattern\obj\Debug\netcoreapp2.1\decorator-pattern.AssemblyInfo.cs
+d:\largo\dotnet\decorator-pattern\bin\Debug\netcoreapp2.1\decorator-pattern.deps.json
+d:\largo\dotnet\decorator-pattern\bin\Debug\netcoreapp2.1\decorator-pattern.runtimeconfig.json
+d:\largo\dotnet\decorator-pattern\bin\Debug\netcoreapp2.1\decorator-pattern.runtimeconfig.dev.json
+d:\largo\dotnet\decorator-pattern\bin\Debug\netcoreapp2.1\decorator-pattern.dll
+d:\largo\dotnet\decorator-pattern\bin\Debug\netcoreapp2.1\decorator-pattern.pdb
+d:\largo\dotnet\decorator-pattern\obj\Debug\netcoreapp2.1\decorator-pattern.dll
+d:\largo\dotnet\decorator-pattern\obj\Debug\netcoreapp2.1\decorator-pattern.pdb

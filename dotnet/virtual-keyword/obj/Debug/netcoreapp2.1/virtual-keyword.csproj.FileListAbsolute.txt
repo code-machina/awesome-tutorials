@@ -1,0 +1,11 @@
+d:\largo\dotnet\virtual-keyword\bin\Debug\netcoreapp2.1\virtual-keyword.deps.json
+d:\largo\dotnet\virtual-keyword\bin\Debug\netcoreapp2.1\virtual-keyword.runtimeconfig.json
+d:\largo\dotnet\virtual-keyword\bin\Debug\netcoreapp2.1\virtual-keyword.runtimeconfig.dev.json
+d:\largo\dotnet\virtual-keyword\bin\Debug\netcoreapp2.1\virtual-keyword.dll
+d:\largo\dotnet\virtual-keyword\bin\Debug\netcoreapp2.1\virtual-keyword.pdb
+d:\largo\dotnet\virtual-keyword\obj\Debug\netcoreapp2.1\virtual-keyword.csprojAssemblyReference.cache
+d:\largo\dotnet\virtual-keyword\obj\Debug\netcoreapp2.1\virtual-keyword.csproj.CoreCompileInputs.cache
+d:\largo\dotnet\virtual-keyword\obj\Debug\netcoreapp2.1\virtual-keyword.AssemblyInfoInputs.cache
+d:\largo\dotnet\virtual-keyword\obj\Debug\netcoreapp2.1\virtual-keyword.AssemblyInfo.cs
+d:\largo\dotnet\virtual-keyword\obj\Debug\netcoreapp2.1\virtual-keyword.dll
+d:\largo\dotnet\virtual-keyword\obj\Debug\netcoreapp2.1\virtual-keyword.pdb

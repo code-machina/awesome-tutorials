@@ -1,0 +1,11 @@
+d:\largo\dotnet\interface-segregation-principle\bin\Debug\netcoreapp2.1\interface-segregation-principle.deps.json
+d:\largo\dotnet\interface-segregation-principle\bin\Debug\netcoreapp2.1\interface-segregation-principle.runtimeconfig.json
+d:\largo\dotnet\interface-segregation-principle\bin\Debug\netcoreapp2.1\interface-segregation-principle.runtimeconfig.dev.json
+d:\largo\dotnet\interface-segregation-principle\bin\Debug\netcoreapp2.1\interface-segregation-principle.dll
+d:\largo\dotnet\interface-segregation-principle\bin\Debug\netcoreapp2.1\interface-segregation-principle.pdb
+d:\largo\dotnet\interface-segregation-principle\obj\Debug\netcoreapp2.1\interface-segregation-principle.csprojAssemblyReference.cache
+d:\largo\dotnet\interface-segregation-principle\obj\Debug\netcoreapp2.1\interface-segregation-principle.csproj.CoreCompileInputs.cache
+d:\largo\dotnet\interface-segregation-principle\obj\Debug\netcoreapp2.1\interface-segregation-principle.AssemblyInfoInputs.cache
+d:\largo\dotnet\interface-segregation-principle\obj\Debug\netcoreapp2.1\interface-segregation-principle.AssemblyInfo.cs
+d:\largo\dotnet\interface-segregation-principle\obj\Debug\netcoreapp2.1\interface-segregation-principle.dll
+d:\largo\dotnet\interface-segregation-principle\obj\Debug\netcoreapp2.1\interface-segregation-principle.pdb
