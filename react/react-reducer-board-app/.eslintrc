@@ -1,0 +1,39 @@
+{
+    "rules": {
+        "quotes": [1,"single"],
+        "linebreak-style": [2,"windows"],
+        "semi": [2,"always"],
+        "comma-dangle": [1, "never"],
+        "react/no-direct-mutation-state": 2,
+        "react/prop-types": [2, {"ignore": "store"}],
+        "react/sort-comp": [2, {
+            "order": [
+                "lifecycle",
+                "everything-else",
+                "rendering"
+            ],
+            "groups": {
+                "rendering": ["/^render. + $ / ", "render"]
+            }
+        }],
+        "react/jsx-max-props-per-line": [1, { "maximum": 3 }],
+        "react/jsx-no-duplicate-props": [2, { "ignoreCase": true }],
+        "react/jsx-quotes": 0,
+        "jsx-quotes": [2, "prefer-double"]
+    },
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true
+    },
+    "extends": "eslint:recommended",
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true,
+        "experimentalObjectRestSpread": true
+    },
+    "plugins": [
+      "react",
+      "babel"
+    ]
+}
