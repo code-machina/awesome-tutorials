@@ -1,0 +1,67 @@
+{
+  "name": "react-starter-boilerplate-pack",
+  "version": "1.0.0",
+  "description": "React Starter Pack",
+  "main": "index.js",
+  "author": "gbkim",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --env.env=dev",
+    "dev:bundleanalyzer": "yarn dev -- --env.addons=bundleanalyzer",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
+    "build:bundleanalyzer": "yarn build -- --env.addons=bundleanalyzer"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-delay-render": "^0.1.2",
+    "react-dom": "^16.4.2",
+    "react-imported-component": "^4.6.2",
+    "react-router-dom": "^4.3.1",
+    "semantic-ui-react": "^0.82.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.1.3",
+    "babel-loader": "^8.0.1",
+    "chalk": "^2.4.1",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "cssnano": "^4.1.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^5.3.0",
+    "react-hot-loader": "^4.3.5",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7",
+    "webpack-merge": "^4.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-machina/react-starter-boilerplate-pack"
+  },
+  "bugs": {
+    "url": "https://github.com/code-machina/react-starter-boilerplate-pack/issues"
+  },
+  "keywords": [
+    "react",
+    "react 16",
+    "boilerplate",
+    "semantic ui",
+    "semantic ui react",
+    "webpack 4",
+    "webpack",
+    "hot module replacement",
+    "hmr"
+  ]
+}
