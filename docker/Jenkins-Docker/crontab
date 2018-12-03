@@ -1,0 +1,5 @@
+# 매주 수요일마다 crontab 으로 백업이 동작하도록 구성
+# m h dom mon dow command
+* 2 * * 7 /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=1
+
+# 출처: http://lunightstory.tistory.com/7 [생각정리..]

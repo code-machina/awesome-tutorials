@@ -1,0 +1,7 @@
+.vscode
+__pycache__
+*.dir
+*.bak
+*.dat
+*.sqlite3
+*.pid

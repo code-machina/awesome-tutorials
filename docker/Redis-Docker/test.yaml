@@ -1,0 +1,90 @@
+# This file created by conda-build 3.15.1
+# meta.yaml template originally from:
+# C:\ci\containers\00003f294hf\tmp\build\80754af9\rsync-recipes\notebook-5.7.0-python_3.6-on-winbuilder, last modified Wed Oct  3 12:49:48 2018
+# ------------------------------------------------
+
+package:
+    name: notebook
+    version: 5.7.0
+source:
+    fn: notebook-5.7.0.tar.gz
+    sha256: b85e4de3d54cf4f14fe1d0515a980ccb49ddd4cdd21250cc0d4fb6374d50b1a7
+    url: https://pypi.io/packages/source/n/notebook/notebook-5.7.0.tar.gz
+build:
+    entry_points:
+        - jupyter-bundlerextension = notebook.bundler.bundlerextensions:main
+        - jupyter-nbextension = notebook.nbextensions:main
+        - jupyter-notebook = notebook.notebookapp:main
+        - jupyter-serverextension = notebook.serverextensions:main
+    number: '0'
+    string: py36_0
+requirements:
+    host:
+        - certifi 2018.8.24 py36_1
+        - pip 10.0.1 py36_0
+        - python 3.6.6 hea74fb7_0
+        - setuptools 40.2.0 py36_0
+        - vc 14.1 h0510ff6_4
+        - vs2015_runtime 14.15.26706 h3a45250_0
+        - wheel 0.31.1 py36_0
+        - wincertstore 0.2 py36h7fe50ca_0
+    run:
+        - ipykernel
+        - ipython_genutils
+        - jinja2
+        - jupyter_client >=5.2.0
+        - jupyter_core >=4.4.0
+        - nbconvert
+        - nbformat
+        - prometheus_client
+        - python >=3.6,<3.7.0a0
+        - pyzmq >=17
+        - send2trash
+        - terminado >=0.8.1
+        - tornado >=4
+        - traitlets >=4.2.1
+test:
+    commands:
+        - jupyter notebook -h
+        - jupyter nbextension -h
+        - jupyter serverextension -h
+        - jupyter bundlerextension -h
+    imports:
+        - notebook
+app:
+    cli_opts:
+        -   args: --port %s
+            default: '8080'
+            name: port
+            summary: Server port ...
+    entry: jupyter-notebook
+    icon: jupyter.png
+    summary: Jupyter Notebook
+    type: web
+about:
+    description: 'Jupyter Notebook is a web application, a browser-based tool for
+        interactive
+
+        authoring of documents which combine explanatory text, mathematics, computations
+
+        and their rich media output.
+
+        '
+    dev_url: https://github.com/jupyter/notebook
+    doc_source_url: https://github.com/jupyter/notebook/blob/master/docs/source/index.rst
+    doc_url: https://jupyter-notebook.readthedocs.org/en/latest/
+    home: http://jupyter.org
+    license: BSD 3-clause
+    license_family: BSD
+    license_file: COPYING.md
+    summary: A web-based notebook environment for interactive computing
+extra:
+    copy_test_source_files: true
+    final: true
+    recipe-maintainers:
+        - SylvainCorlay
+        - gnestor
+        - jakirkham
+        - minrk
+        - pelson
+        - takluyver

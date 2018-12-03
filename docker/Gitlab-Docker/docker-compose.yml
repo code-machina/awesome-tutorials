@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+    web:
+      image: 'gitlab/gitlab-ce:latest'
+      restart: always
+      hostname: 'gitlab.dev'
+      environment:
+        GITLAB_OMNIBUS_CONFIG: |
+          external_url 'http://gitlab.dev'
+      ports:
+        - '8080:80'
+        - '2222:22'
+        - '8081:443'
+      volumes:
+        - 'D:\srv\gitlab2\config:/etc/gitlab'
+        - 'D:\srv\gitlab2\logs:/var/log/gitlab'
+        - 'gitlab-data:/var/opt/gitlab'
+
+volumes:
+    gitlab-data:
+        external: true
