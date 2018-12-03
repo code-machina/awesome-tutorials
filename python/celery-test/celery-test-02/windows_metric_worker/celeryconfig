@@ -1,0 +1,6 @@
+CELERY_RESULT_BACKEND = 'db+postgresql://postgres:924891@localhost/mydatabase'
+BROKER_BACKEND =  'db+postgresql://postgres:924891@localhost/mydatabase'
+
+#using database as the broker the table names are celery_taskmeta|celery_tasksetmeta are created in the database
+#using rabbitmq as the broker the table names are kombu_message|kombu_queue
+#broker,broker_backend, celery_result_backend have to be same

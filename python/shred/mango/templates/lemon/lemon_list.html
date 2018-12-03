@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}mango!{% endblock %}
+
+{% block headcss %}
+  <style>
+    .card-image {
+      height:200px;
+    }
+    .linkable {
+      cursor: pointer;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+  <div class = "row">
+      <div class = "col s4 grey center">timestamp</div>
+      <div class = "col s4 grey center">result</div>
+      <div class = "col s4 grey center">messages</div>
+  </div>
+  {% for lemon in lemon_list %}
+  <div class="row">
+      <div class = "col s4 center">{{lemon.created_on}}</div>
+      <div class = "col s4 center">{{lemon.message}}</div>
+      <div class = "col s4 center">{{lemon.description}}</div>
+  </div>
+  {% endfor %}
+
+  <div class="row">
+    <div class="col s12">
+      {% if is_paginated %}
+        <ul class="pagination">
+          {% if page_obj.has_previous %}
+            <li class="waves-effect">
+              <a href="?page={{ page_obj.previous_page_number }}{{ getvars }}{{ hashtag }}"><i class="mdi-navigation-chevron-left"></i></a>
+            </li>
+          {% else %}
+            <li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
+          {% endif %}
+          <li class="active">
+          <a href="#!">{{ page_obj.number }}</a>
+          </li>
+          {% if page_obj.has_next %}
+            <li class="waves-effect">
+              <a href="?page={{ page_obj.next_page_number }}{{ getvars }}{{ hashtag }}"><i class="mdi-navigation-chevron-right"></i></a>
+            </li>
+          {% else %}
+            <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block extrabody %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.modal-trigger').leanModal();
+    });
+  </script>
+{% endblock %}

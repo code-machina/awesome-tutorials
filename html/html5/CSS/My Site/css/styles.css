@@ -1,0 +1,117 @@
+/************* COLOR TEMPLATE ******************/
+
+/**** https://colorhunt.co/palette/129495 ***/
+
+body {
+  margin: 0px;
+  text-align: center;
+  font-family: "Merriweather", serif;
+}
+
+.pro {
+  text-decoration: underline;
+}
+
+h1 {
+  padding-top: 20px;
+  margin: 50px auto 0 auto;
+  font-family: "Sacramento", cursive;
+
+}
+
+.rocket {
+  width: 25%;
+  float: left;
+  margin-right: 30px;
+}
+
+.contact-img {
+  width: 25%;
+  float: right;
+  margin-left: 30px;
+}
+
+.skill-row {
+  width: 50%;
+  margin: 100px auto 100px auto;
+  margin-bottom: 100px;
+}
+
+.skill-row p {
+    text-align: left;
+    line-height: 2;
+}
+
+.mountain {
+  width: 80%;
+  margin: 100px auto 0 auto;
+}
+
+.top-container {
+  padding-top: 100px;
+  width: 100%;
+  position: relative;
+  background-color: #6bd5e1;
+}
+
+.profile img {
+  border-radius: 100%;
+  width: 200px;
+  margin: 30px auto 0 auto;
+}
+
+.bottom-cloud {
+  position: absolute;
+  left: 100px;
+}
+
+h1 {
+  font-size: 562.5%; 16px 90px/16 = 562.5
+  margin-top: 0;
+  font-family: "Sacramento",cursive;
+}
+
+hr {
+  /* background-color: #FFFFFF; */
+  border-style: none;
+  border-top-style: dotted;
+  border-color: grey;
+  border-width: 5px;
+  /* height: 2px; */
+  width: 10%;
+  margin-top: 30px;
+}
+
+.title {
+  color: #ffd98e;
+  font-family: "Montserrat", sans-serif;
+}
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+}
+
+.top-cloud {
+  position: absolute;
+  right: 300px;
+  top: 50px;
+}
+
+
+#middle-container {
+  width: 200px;
+  height: 200px;
+  background-color: blue;
+}
+
+#bottom-container {
+  width: 200px;
+  height: 200px;
+  margin-left: 400px;
+  background-color: red;
+}
+
+.contact-description {
+  clear: right;
+}

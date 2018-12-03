@@ -1,0 +1,20 @@
+kafka:
+  enabled: False
+bootstrap_servers:
+  - '192.168.2.196:9092'
+  - '192.168.2.197:9092'
+  - '192.168.2.197:9092'
+wmic_targets:
+  - '192.168.3.169' # localhost
+  - '192.168.3.168' # cglee 
+wmic_classes:
+  merong: 
+    Win32_Perfrawdata_tcpip_tcpv4:
+      - ConnectionFailures
+      - SegmentsReceivedPersec
+    Win32_Perfrawdata_tcpip_tcpv42:
+      - ConnectionFailures
+      - SegmentsReceivedPersec
+    
+  
+  

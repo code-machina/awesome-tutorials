@@ -1,0 +1,35 @@
+/*
+  inline css
+*/
+/*******************TAG SELECTOR***********************/
+
+
+body {
+  background-color: #EAFCFC;
+  color: #4a4a48;
+  font-size: 14px;
+}
+
+
+/* it doesn't work, because of brwoser default css */
+hr {
+  /* background-color: #FFFFFF; */
+  border-style: none;
+  border-top-style: dotted;
+  border-color: grey;
+  border-width: 5px;
+  /* height: 2px; */
+  width: 10%;
+}
+
+h3 {
+  color: #c19898;
+  font-size: 30px;
+}
+
+img {
+  text-align: center;
+  display: block;
+  width: 50%;
+  border-radius: 50%;
+}

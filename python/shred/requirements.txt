@@ -1,0 +1,21 @@
+amqp==1.4.6
+anyjson==0.3.3
+billiard==3.3.0.20
+bson==0.5.7
+celery==3.1.18
+Django==1.8.2
+django-timezone-field==3.0
+kafka-python==1.4.3
+kombu==3.0.30
+pinject==0.10.2
+python-crontab==2.3.5
+python-dateutil==2.7.5
+pytz==2015.4
+# pywin32==224
+PyYAML==3.13
+redis==2.10.3
+requests>=2.20.0
+six==1.11.0
+vine==1.1.4
+virtualenv==16.1.0
+WMI==1.4.9

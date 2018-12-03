@@ -1,0 +1,6 @@
+celery-linux-default-py3/
+celery-py35/
+celery-py35-linux/
+db.sqlite3
+.vscode/
+__pycache__

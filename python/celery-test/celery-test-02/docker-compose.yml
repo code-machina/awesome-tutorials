@@ -1,0 +1,50 @@
+version: '3'
+services:
+  broker:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  web:
+    image: gbkim1988/shred:0.4.2
+    environment:
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "8282:8282"
+      - "5555:5555"
+    depends_on:
+      - db
+    command: >
+      sh -c 'python manage.py wait_for_db && 
+             python manage.py migrate && 
+             python manage.py runserver 0.0.0.0:8282 && 
+             celery -A "${PROJECT_NAME}" beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler &&
+             celery -A "${PROJECT_NAME}" flower --port=5555'
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+  worker:
+    image: gbkim1988/shred:0.4.2
+    environment:
+      PYTHONUNBUFFERED: 1
+      REDIS_SETTING: redis://192.168.43.28:6379
+      BACKEND_SETTING: redis://192.168.43.28:6379
+# ERROR: Service 'shred.worker' depends on service 'broker_reids' which is undefined.
+#    depends_on:
+#      - broker_redis
+    depends_on:
+      - broker
+      - worker
+    command: "bash /app/worker_test/entrypoint.sh"
+#    entrypoint: /app/worker_test/entrypoint.sh
+    # entrypoint: /worker_test/entrypoint.sh
+# to apply deploy, swarm must be initialized.
+# $> docker swarm init
+    deploy:
+      mode: replicated
+      replicas: 6
+
+#  shred.scheduler:
+#    image: gbkim1988/shred:0.4.1
+#    volumes:
+#      -

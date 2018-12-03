@@ -1,0 +1,4 @@
+FROM gbkim1988/shred:0.4.1
+MAINTAINER code-machina <gbkim1988@gmail.com>
+
+COPY ./worker_test /app/worker_test

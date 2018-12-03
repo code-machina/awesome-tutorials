@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    # restart: always
+
+  shred.worker:
+    image: gbkim1988/shred:0.3.1
+    volumes:
+      - "./"
+    mem_limit: 500m
+    command: celery -A proj worker --loglevel=INFO --concurrency=10 -n worker@%h
+    
+  
