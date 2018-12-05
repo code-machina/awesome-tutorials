@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import NameForm, ContactForm
-from django.conf import settings
-
-settings.configure({}, SOME_SETTING='foo')
 
 # Create your views here.
 def register(request):
