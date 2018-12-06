@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DeePattern.SOLID.OCP.VIOLATION
@@ -113,5 +114,107 @@ namespace DeePattern.SOLID.OCP.CORRECTNESS
         }
     }
 
+    public enum BookCategory
+    {
+        Novel,
+        Bio,
+        Essay,
+        Travel,
+        Infantry,
+
+    }
+
+    public class Book
+    {
+        public string Author;
+        public DateTime Since;
+        public string Title;
+        public BookCategory Category;
+
+        public Book(string author, DateTime since, string title, BookCategory category)
+        {
+            Author = author ?? throw new ArgumentNullException(paramName: nameof(author));
+            Since = since;
+            Title = title ?? throw new ArgumentNullException(paramName: nameof(title));
+            Category = category;
+        }
+    }
+
+    /* Specification 패턴
+     * Filter 를 수정 없이 사용할 수 있도록 정의해야한다.
+     * 
+     */
+    
+    /// <summary>
+    /// Specification 인터페이스를 생성한다.
+    /// 
+    /// </summary>
+    public interface ISpecification<T>
+    {
+        bool IsSatisfiedBy(T t1);
+        ISpecification<T> And(ISpecification<T> t1);
+        ISpecification<T> AndNot(ISpecification<T> t1);
+        ISpecification<T> Or(ISpecification<T> t1);
+        ISpecification<T> OrNot(ISpecification<T> t1);
+        ISpecification<T> Not();
+    }
+    
+
+    public abstract class LinqSpecification<T>: CompositeSpecification<T>
+    {
+
+    }
+
+    public abstract class CompositeSpecification<T> : ISpecification<T>
+    {
+        public ISpecification<T> And(ISpecification<T> t1)
+        {
+            return new AndSpecification<T>(this, t1);
+        }
+
+        public ISpecification<T> AndNot(ISpecification<T> t1)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// IsSatisfiedBy 메서드는 추상 클래스로 선언하여 override 하도록 한다.
+        /// </summary>
+        /// <param name="t1"></param>
+        /// <returns></returns>
+        public abstract bool IsSatisfiedBy(T t1);
+
+        public ISpecification<T> Not()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISpecification<T> Or(ISpecification<T> t1)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ISpecification<T> OrNot(ISpecification<T> t1)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AndSpecification<T> : CompositeSpecification<T>
+    {
+        ISpecification<T> left;
+        ISpecification<T> right;
+
+        public AndSpecification(ISpecification<T> left, ISpecification<T> right)
+        {
+            this.left = left;
+            this.right = right;
+        }
+
+        public override bool IsSatisfiedBy(T t1)
+        {
+            return left.IsSatisfiedBy(t1) && right.IsSatisfiedBy(t1);
+        }
+    }
 
 }
