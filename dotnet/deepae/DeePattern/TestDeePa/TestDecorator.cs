@@ -93,12 +93,13 @@ namespace TestDeePa
              * 
              * 클래스 종류
              * - Book 클래스
-             *   - 분야 (영아, 대학교)
-             *     - 분야가 다양하거나 여러 분야를 중첩해야 하는 경우는?
-             *   - 
+             *   - 가격 
+             *   - 상품 코드
+             *   - 책 제목
+             * - OriginalBookPrice
              *   
-             * - User 클래스
-             * - 
+             * - User 클래스, Book 클래스
+             *   - 테스트를 위해 익명 클래스를 선언한다.
              * */
 
             /// Basic Test

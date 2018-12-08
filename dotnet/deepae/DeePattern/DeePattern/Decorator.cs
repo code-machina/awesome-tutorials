@@ -212,7 +212,7 @@ namespace DeePattern.Decorator.InterfaceBased.BookSelling
         /// <summary>
         /// 결제: 가격 계산 결과
         /// </summary>
-        public PriceAssignResult PAResult = PriceAssignResult.Empty;
+        /// public PriceAssignResult PAResult = PriceAssignResult.Empty;
 
         // public BaseBookPrice(Book item)
         // {
@@ -242,7 +242,7 @@ namespace DeePattern.Decorator.InterfaceBased.BookSelling
         /// <summary>
         /// 결제: 가격 계산 결과
         /// </summary>
-        public PriceAssignResult PAResult = PriceAssignResult.Empty;
+        /// public PriceAssignResult PAResult = PriceAssignResult.Empty;
 
         public OriginalBookPrice(Book item)
         {
