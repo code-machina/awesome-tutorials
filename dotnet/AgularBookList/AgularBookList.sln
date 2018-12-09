@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgularBookList", "AgularBookList\AgularBookList.csproj", "{A85FF86D-AA72-46B7-BFB2-64328178C389}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularYes24BookList", "AngularYes24BookList\AngularYes24BookList.csproj", "{4366DED9-C53E-4655-BF4F-8C4875C04EA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A85FF86D-AA72-46B7-BFB2-64328178C389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A85FF86D-AA72-46B7-BFB2-64328178C389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A85FF86D-AA72-46B7-BFB2-64328178C389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A85FF86D-AA72-46B7-BFB2-64328178C389}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4366DED9-C53E-4655-BF4F-8C4875C04EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4366DED9-C53E-4655-BF4F-8C4875C04EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4366DED9-C53E-4655-BF4F-8C4875C04EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4366DED9-C53E-4655-BF4F-8C4875C04EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DC9AAF18-6605-40FB-9CD1-FBCAF60E6AFD}
+	EndGlobalSection
+EndGlobal
