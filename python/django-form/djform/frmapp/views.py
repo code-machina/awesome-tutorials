@@ -13,4 +13,4 @@ def register(request):
             'form': ContactForm()
         }
 
-        return render(request, 'frmapp/register.html',context)
+        return render(request, 'frmapp/register.html', context)
