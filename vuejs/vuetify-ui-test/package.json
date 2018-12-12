@@ -1,21 +1,19 @@
 {
-  "name": "my-second-nuxt-app",
+  "name": "vuetify-ui-test",
   "version": "1.0.0",
-  "description": "My sensational Nuxt.js project",
-  "author": "gbkim1988",
+  "description": "My super-duper Nuxt.js project",
+  "author": "gbkim",
   "private": true,
   "scripts": {
-    "dev": "nuxt --hostname 0.0.0.0 --port 3000",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "material-design-icons-iconfont": "^4.0.3",
     "nuxt": "^2.0.0",
-    "vuetify": "^1.3.13",
-    "webfontloader": "^1.6.28"
+    "vuetify": "^1.2.4"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
