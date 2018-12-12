@@ -2,7 +2,7 @@ const pkg = require('./package')
 
 module.exports = {
   mode: 'universal',
-
+  dev: (process.env.NODE_ENV !== 'production'),
   /*
   ** Headers of the page
   */
@@ -11,7 +11,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'gbkim1988', content: pkg.description }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -27,7 +27,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/style/main.css',
+    '~assets/css/main.css',
   ],
 
   /*
