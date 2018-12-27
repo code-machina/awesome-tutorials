@@ -2,16 +2,18 @@
   <div>
     <sample1 />
     <sample2 />
+    <sample3 />
   </div>
 </template>
 <script>
 import sample1 from '@/components/sample/sample1.vue';
 import sample2 from '@/components/sample/sample2.vue';
-
+import sample3 from '@/components/sample/sample3.vue';
 export default {
   components: {
       sample1,
       sample2,
+      sample3,
   },
   data: function() {
     return {
