@@ -175,6 +175,7 @@
         drawer: null, // Drawer 를 Off 하고 시작한다.
         fixed: true,
         items: [
+          { heading: "Test" },
           { icon: 'apps', text: 'Welcome', to: '/' },
           { icon: 'bubble_chart', text: 'About Tutorial', to: '/tutorial' },
           {
@@ -185,7 +186,17 @@
             children: [
               { icon: 'forward', text: 'tutorial 1', to: '/tutorial/tutorial-1' },
             ]
-          }
+          },
+          { icon: 'color_lens', text: 'Design Tutorial', to: '/design' },
+          {
+            icon: 'keyboard_arrow_up',
+            'icon-alt': 'keyboard_arrow_down',
+            text: 'More Design',
+            model: true,
+            children: [
+              { icon: 'forward', text: 'design 1', to: '/design/design-1' },
+            ]
+          },
         ],
         miniVariant: false,
         right: false,

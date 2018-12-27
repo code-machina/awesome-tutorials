@@ -8,7 +8,6 @@
 export default {
     data: function() {
         return {
-            paragraph: "Hellworld",
         }
     }
 }
@@ -18,5 +17,15 @@ export default {
 .custom-border {
     border-style: solid;
     border-width: 1px;
+    height: 150px;
+    width: 200px;
+}
+
+.custom-border:hover {
+    background-color: yellow;
+}
+
+.custom-border:active {
+    background-color: red;
 }
 </style>
