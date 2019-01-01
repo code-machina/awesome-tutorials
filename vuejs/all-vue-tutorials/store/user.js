@@ -1,5 +1,5 @@
 import Vue from 'vue';
-
+import * as types from './user-mutations-types';
 export const state = () => ({
   users: [{
       id: 1,
@@ -25,7 +25,8 @@ export const state = () => ({
       pic: "https://randomuser.me/api/portraits/lego/4.jpg",
       age: 44,
     },
-  ]
+  ],
+  value : "This is the thing which we want to change. :)"
 })
 
 export const mutations = {
@@ -41,10 +42,10 @@ export const mutations = {
     // state.list.splice(state.list.indexOf(todo), 1)
     state.users.splice(state.users.indexOf(_user), 1)
   },
-  updateName(state, {
+  updateName: (state, {
     _id,
     newName
-  }) {
+  }) => {
     // state.users.state.users.indexOf(_user)
     // id 를 찾는다.
     const targ = state.users.findIndex(x => x.id == _id);
@@ -73,11 +74,33 @@ export const mutations = {
     console.log(newUrl)
     if (targ > -1)
       state.users[targ].pic = newUrl;
+  },
+  updateValue: function(state, payload){
+    state.value = payload;
   }
 }
 
 export const getters = {
   users(state) {
-    return state.users
+    return state.users;
+  },
+  value(state) {
+    return state.value;
   }
 }
+
+export const actions = {
+  asyncSetNewName: ({commit}, payload) => {
+    setTimeout(
+      () => {
+        commit('updateName', { _id: payload._id, newName: payload.newName} );
+      },
+      payload.duration // Can Set Timeout seconds.
+    )
+  },
+  updateValue: ({commit}, payload) => {
+    // Call 'updateValue' Mutation 
+    commit('updateValue', payload);
+  }
+}
+
