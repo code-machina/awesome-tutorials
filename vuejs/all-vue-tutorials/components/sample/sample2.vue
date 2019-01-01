@@ -22,17 +22,7 @@
                         <div>
                             <br>
                             <div class="headline" v-on:mouseover="hoverDiv"> 예제: 사용자 정보</div>
-                            <hr>
-                            <div>
-                            </div>
-                            <codemirror v-model="code" :options="cmOption"></codemirror>
-                             <local-codemirror ref="cmA"
-                      :value="code2"
-                      :options="cmOption"
-                      @blur="onCmBlur($event)"
-                      @focus="onCmFocus($event)"
-                      @ready="onCmReady($event)">
-		</local-codemirror>
+                            <hr>                           
                         </div>
                     </v-card-text>
                 </v-card>
@@ -41,10 +31,6 @@
     </v-container>
 </template>
 <script>
-import { codemirror } from 'vue-codemirror'
-
-// require styles
-import 'codemirror/lib/codemirror.css'
 
 export default {
     data: () => ({
@@ -54,13 +40,6 @@ export default {
       },
       code2: "hellworodl",
       code: "hellworld2",
-    cmOption: {
-        tabSize: 4,
-        styleActiveLine: true,
-        lineNumbers: true,
-        mode: 'text/javascript',
-        theme: "monokai"
-      },
     }),
     methods: {
         changeLorem: function() {
@@ -74,9 +53,6 @@ export default {
         readFile: function(){
             const reader = new FileReader();
         }
-    },
-    components: {
-    	LocalCodemirror: codemirror
-    },
+    }
 }
 </script>

@@ -22,8 +22,6 @@ export default {
   },
   methods: {
     nativeClickEvent: function(event) {
-      console.log('이벤트가 발생하였습니다. ')
-      console.log(event);
       this.paragraph = event;
     },
     resetEvent: function(){

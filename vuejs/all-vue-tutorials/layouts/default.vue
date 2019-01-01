@@ -119,9 +119,11 @@
 export default {
   data() {
     return {
-      clipped: true,
-      drawer: null, // Drawer 를 Off 하고 시작한다.
-      fixed: true,
+      clipped: false,
+      drawer: {
+        stateless: true,
+      }, // Drawer 를 Off 하고 시작한다.
+      fixed: false,
       items: [
         { heading: 'Test' },
         { icon: 'apps', text: 'Welcome', to: '/' },
@@ -132,7 +134,8 @@ export default {
           text: 'More Tutorials',
           model: true,
           children: [
-            { icon: 'forward', text: 'tutorial 1', to: '/tutorial/tutorial-1' }
+            { icon: 'forward', text: 'tutorial 1', to: '/tutorial/tutorial-1' },
+            { icon: 'forward', text: 'Props Tutorial', to: '/tutorial/PropsTutorial' }
           ]
         },
         { icon: 'color_lens', text: 'Design Tutorial', to: '/design' },
