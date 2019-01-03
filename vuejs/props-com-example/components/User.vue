@@ -28,6 +28,7 @@ import UserEdit from './UserEdit.vue';
 export default {
     data: function() {
         return {
+            url: 'https://www.yes24.com',
             name: '건범',
             age: 20,
         };

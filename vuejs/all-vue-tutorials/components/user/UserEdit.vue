@@ -91,7 +91,7 @@
 
 <script>
 import { mapActions, mapMutations } from 'vuex'
-import * as types from '@/store/user-mutations-types';
+// import * as types from '@/store/user-mutations-types';
 
 export default {
     props:{
@@ -147,8 +147,8 @@ export default {
             const newName = e.target.value;
             if(newName.trim()){
                 const _id = this.id;
-                // this.$store.commit('user/updateName', { _id, newName } )
-                this.$store.commit(types.UPDATE_NAME, { _id, newName } )
+                this.$store.commit('user/updateName', { _id, newName } )
+                // this.$store.commit(types.UPDATE_NAME, { _id, newName } )
             }
             // e.target.value = ""; // 빈 값으로 변경
         },
