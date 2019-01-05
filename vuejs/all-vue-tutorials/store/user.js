@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import * as types from './user-mutations-types';
 export const state = () => ({
   users: [{
       id: 1,
