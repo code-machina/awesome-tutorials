@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="popup" width="800px">
+    <v-dialog v-model="is_popup" width="800px">
       <v-card>
         <v-card-title
           class="grey lighten-4 py-4 title"
@@ -57,8 +57,8 @@
         <v-card-actions>
           <v-btn flat color="primary">More</v-btn>
           <v-spacer></v-spacer>
-          <v-btn flat color="primary" @click="dialog = false">Cancel</v-btn>
-          <v-btn flat @click="dialog = false">Save</v-btn>
+          <v-btn flat color="primary" @click="cancelContact">Cancel</v-btn>
+          <v-btn flat @click="confirmContact">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -68,13 +68,13 @@
 export default {
     name: 'floatdialog',
     props: ['is_popup'],
-    data() {
-        return {
-            popup: this.is_popup,
-        }
-    },
     methods: {
-
+      cancelContact(){
+        this.$emit("cancel-contact");
+      },
+      confirmContact(){
+        this.$emit("confirm-contact");
+      }
     }
 
 }

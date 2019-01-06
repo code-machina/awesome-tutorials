@@ -1,52 +1,11 @@
 <template>
-  <v-layout row wrap app>
- 
-      <PostPreview 
-        id="1"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my first post!" />
-      <PostPreview 
-        id="2"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my second post!" />
-      <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />
-              <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />
-              <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />
-                      <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />
-              <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />              
-        <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />
-        <PostPreview 
-        id="3"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my third post!" />
-
+  <v-layout 
+    column
+    justify-center
+    align-center
+  >
+      <v-flex>
+      </v-flex>
   </v-layout>
 </template>
 
