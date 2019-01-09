@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     submit(){
-
+      this.$emit('submit', this.editedPost);
     },
     cancel(){
       // this.$router.push({path: '/admin'});

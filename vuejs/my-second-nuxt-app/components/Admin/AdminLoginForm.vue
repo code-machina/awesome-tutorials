@@ -55,7 +55,9 @@ export default {
     };
   },
   methods:{
-    submit(){},
+    submit(){
+      // this.$emit('submit', this.edited)
+    },
     cancel(){
       this.$router.go(-1);
     }

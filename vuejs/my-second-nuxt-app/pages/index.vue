@@ -1,23 +1,73 @@
 <template>
-  <v-layout 
-    column
-    justify-center
-    align-center
-  >
-      <v-flex>
-      </v-flex>
+    <v-layout>
+    <v-flex xs12 sm6 offset-sm3 offset-xs4>
+      <PostList :loadedPost="loadedPost" />
+    </v-flex>
   </v-layout>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
 import PostPreview from '@/components/Posts/PostPreview.vue';
+import PostList from '@/components/Posts/PostList.vue';
 
 export default {
   components: {
     Logo,
-    PostPreview
+    PostPreview,
+    PostList
+  },
+  middleware: 'log',
+  // asyncData(context){
+  // fetch(context){
+    // 아래의 방식은 이상적인 방법은 아니다. 중복 초기화를 막기 위해서는 nuxtServerInit 이 필요하다.
+    // if (context.store.state.loadedPost.length > 0) {
+    //  return null;
+    // }
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       // console.log(context);
+  //       resolve({
+  //         loadedPost : [
+  //           {
+  //             id: '1',
+  //             thumbnail: 'https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png',
+  //             title: 'My first post',
+  //             previewText: 'This my first post!'
+  //           },
+  //           {
+  //             id: '2',
+  //             thumbnail: 'https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png',
+  //             title: 'My second post',
+  //             previewText: 'This my second post!'
+  //           },
+  //           {
+  //             id: '3',
+  //             thumbnail: 'https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png',
+  //             title: 'My third post',
+  //             previewText: 'This my third post!'
+  //           },
+  //         ]
+  //       });
+  //     }, 1500);
+  //   }).then(data => {
+  //     // return data;
+  //     context.store.commit('setPosts', data.loadedPost);
+  //   })
+  //   .catch(e => {
+  //     context.error(new Error())
+  //   });
+
+  // },
+  computed: {
+    loadedPost() {
+      return this.$store.getters.loadedPost;
+    }
   }
+  // created() {
+  //  this.$store.dispatch('setPosts', this.loadedPost);
+  //  console.log(this.$store.getters.loadedPost);
+  // }
 }
 </script>
 

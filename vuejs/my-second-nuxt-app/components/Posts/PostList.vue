@@ -4,24 +4,18 @@
     row 
     wrap
     >
-      <v-flex xs4>
-        <PostPreview
-        id="1"
-        :is-admin="isAdmin"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my first post!"
-        />
-      </v-flex>
-      <v-flex xs4>
-        <PostPreview
-        id="2"
-        :is-admin="isAdmin"
-        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
-        title="Hello there!"
-        previewText="This my first post!"
-        />
-      </v-flex>
+      <template v-for="post in loadedPost">
+        <v-flex xs4 :key="post.id">
+          <PostPreview
+          :id="post.id"
+          :is-admin="isAdmin"
+          :thumbnail="post.thumbnail"
+          :title="post.title"
+          :previewText="post.previewText"
+          />
+        </v-flex>
+      </template>
+      <!--
       <v-flex xs4>
         <PostPreview
         id="2"
@@ -40,6 +34,16 @@
         previewText="This my first post!"
         />
       </v-flex>
+      <v-flex xs4>
+        <PostPreview
+        id="2"
+        :is-admin="isAdmin"
+        thumbnail="https://cdn.static-economist.com/sites/default/files/images/2015/09/blogs/economist-explains/code2.png"
+        title="Hello there!"
+        previewText="This my first post!"
+        />
+      </v-flex> 
+      -->
     </v-layout>
   </v-container>
 </template>
@@ -55,6 +59,10 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    loadedPost: {
+      type: Array,
+      required: true,
     }
   }
 }

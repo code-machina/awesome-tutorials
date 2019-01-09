@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex xs12 sm6 offset-sm3 offset-xs4>
-      <PostList />
+      <PostList  :loadedPost="loadedPost"/>
     </v-flex>
   </v-layout>
 </template>
@@ -12,7 +12,8 @@ import PostList from "@/components/Posts/PostList";
 export default {
   components: {
     PostList
-  }
+  },
+  
 };
 </script>
 

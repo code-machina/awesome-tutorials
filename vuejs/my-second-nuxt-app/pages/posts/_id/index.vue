@@ -1,7 +1,7 @@
 <template>
     <v-container class="single-post-page">
         <section class="post">
-            <h1>Title of the Post</h1>
+            <h1> {{ loadedPost.title }}</h1>
             <div class="post-details">
                 <div>Last Updated on XXX</div>
                 <div>Written By Name</div>
@@ -13,6 +13,20 @@
         </section>
     </v-container>
 </template>
+
+<script>
+export default {
+  asyncData(context) {
+    return context.$axios.get('https://my-posts-beta.firebaseio.com/posts/' + context.params.id +'.json')
+    .then(res => {
+      return {
+        loadedPost : res.data
+      }
+    }).catch(e => console.log(e))
+  }
+}
+</script>
+
 
 <style scoped>
 .single-post-page {
