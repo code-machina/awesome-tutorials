@@ -10,6 +10,11 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </v-container>
 </template>
+<script>
+export default {
+    middleware: 'log',
+}
+</script>
 
 <style scoped>
 .about-page {

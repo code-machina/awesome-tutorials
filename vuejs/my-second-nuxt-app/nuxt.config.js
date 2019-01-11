@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const bodyParser = require('body-parser')
 
 module.exports = {
   mode: 'universal',
@@ -44,7 +45,26 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
   ],
-
+  /*
+  ** 아래의 미들웨어는 전역적을 적용되는 설정이다.
+  */
+  router: {
+    middleware: [
+      // 'log',
+      // 'auth',
+    ],
+  },
+  /*
+  ** 
+  */
+  tansition: {
+    name: 'fade',
+    mode: 'out-in',
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://my-posts-beta.firebaseio.com/',
+    fbAPIKey: 'AIzaSyD4qUN92fVamFkASB9k31U05EwJtH1xuAo',
+  },
   /*
   ** 
   */
@@ -61,5 +81,9 @@ module.exports = {
     extend(config, ctx) {
       
     }
-  }
+  },
+  serverMiddleware: [
+    bodyParser.json(),
+    '@/api',
+  ],
 }

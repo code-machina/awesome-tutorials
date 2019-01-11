@@ -4,7 +4,8 @@
     <v-text-field label="Subject" v-model="editedPost.title"></v-text-field>
     <v-text-field label="Thumbnail" v-model="editedPost.thumb"></v-text-field>
     <v-divider></v-divider>
-    <v-textarea v-model="editedPost.content" label="Message" counter maxlength="120" full-width single-line></v-textarea>
+    <v-textarea v-model="editedPost.content" label="Message"></v-textarea>
+    <v-textarea v-model="editedPost.previewText" label="previewText"></v-textarea>
     <v-btn type="submit">제출</v-btn>
     <v-btn @click="cancel">취소</v-btn>
   </v-form>
@@ -26,7 +27,8 @@ export default {
             author: '', 
             title: '', 
             thumb: '', 
-            content: '' 
+            content: '',
+            previewText: '',
           },
     }
 

@@ -13,7 +13,11 @@ export default {
   components: {
     PostList
   },
-  
+  computed: {
+    loadedPost(){
+      return this.$store.getters.loadedPost;
+    }
+  }
 };
 </script>
 

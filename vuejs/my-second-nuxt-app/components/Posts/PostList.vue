@@ -9,7 +9,7 @@
           <PostPreview
           :id="post.id"
           :is-admin="isAdmin"
-          :thumbnail="post.thumbnail"
+          :thumbnail="post.thumb"
           :title="post.title"
           :previewText="post.previewText"
           />
