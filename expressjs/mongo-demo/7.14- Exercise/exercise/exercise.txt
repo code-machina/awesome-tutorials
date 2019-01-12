@@ -1,0 +1,8 @@
+// 아래의 명령어를 통해서 데이터를 입력할 수 있다.
+
+// In Windows, set PATH to access mongoimport.exe
+set PATH=%PATH%;C:\Program Files\MongoDB\Server\3.6\bin\
+// Move to folder to reference *-data.json
+cd .\7.14- Exercise\exercise
+// import json file data into Mongodb
+mongoimport --db mongo-exercises --collection courses --drop --file exercise-data.json --jsonArray

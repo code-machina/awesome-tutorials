@@ -100,7 +100,6 @@ async function displayCommits() {
     }catch(err) {
         console.log('Error', err.message);
     }
-
 }
 
 displayCommits();
