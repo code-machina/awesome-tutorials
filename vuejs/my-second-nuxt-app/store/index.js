@@ -2,6 +2,8 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import Cookie from 'js-cookie';
 
+/* jshint ignore:start */
+// async 메서드에 대한 jshint 구문 분석 에러로 인해 ignore 옵션을 주어 예외 처리함.
 const createStore = () => {
   return new Vuex.Store({
     state: {

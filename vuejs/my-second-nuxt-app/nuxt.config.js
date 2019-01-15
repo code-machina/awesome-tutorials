@@ -1,5 +1,5 @@
-const pkg = require('./package')
-const bodyParser = require('body-parser')
+const pkg = require('./package');
+const bodyParser = require('body-parser');
 
 module.exports = {
   mode: 'universal',
@@ -99,4 +99,4 @@ module.exports = {
     bodyParser.json(),
     '@/api',
   ],
-}
+};

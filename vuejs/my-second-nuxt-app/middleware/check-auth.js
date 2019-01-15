@@ -1,5 +1,5 @@
   export default function(context){
-    console.log('[Middleware] Check Auth..')
+    console.log('[Middleware] Check Auth..');
     if(process.client){ // 클라이언트 영역
       console.log('클라이언트 영역  입니다.');
       console.log(context);
