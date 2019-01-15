@@ -44,6 +44,7 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
   /*
   ** 아래의 미들웨어는 전역적을 적용되는 설정이다.
@@ -54,6 +55,17 @@ module.exports = {
       // 'auth',
     ],
   },
+  /** */
+  proxy: [
+    // Proxies /foo to http://example.com/foo
+    // 'http://localhost:47721/api/track-data',
+ 
+    // Proxies /api/books/*/**.json to http://example.com:8000
+    // 'http://localhost:3000/api/track-data',
+ 
+    // You can also pass more options
+    // [ 'http://example.com/foo', { ws: false } ]
+  ],
   /*
   ** 
   */
@@ -64,6 +76,7 @@ module.exports = {
   env: {
     baseUrl: process.env.BASE_URL || 'https://my-posts-beta.firebaseio.com/',
     fbAPIKey: 'AIzaSyD4qUN92fVamFkASB9k31U05EwJtH1xuAo',
+    PORT: process.env.PORT || 3000,
   },
   /*
   ** 

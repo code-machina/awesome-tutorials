@@ -97,6 +97,8 @@ const createStore = () => {
       },
       authenticateUser(vuexContext, authData) {
          // Google API 
+        let trackUrl = `http://localhost:${process.env.PORT}/api/track-data`
+        console.log(trackUrl);
         let authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + process.env.fbAPIKey 
         if(!authData.isLogin) {
           authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.fbAPIKey
@@ -108,7 +110,8 @@ const createStore = () => {
           returnSecureToken: true,
         }).then(res => { 
           // 인증 시 데이터를 두 곳에 저장한다. 
-          // 첫째는 
+          // 첫째는 쿠키 정보
+          // 둘째는 localStorage
           const expirationDate = new Date().getTime() + parseInt(res.data.expiresIn,10) * 1000
           // const expirationDate = new Date().getTime() + Number.parseInt(res.data.expiresIn,10)
           vuexContext.commit('setToken', res.data.idToken);
@@ -116,8 +119,7 @@ const createStore = () => {
           localStorage.setItem('tokenExpiration', expirationDate)
           Cookie.set('jwt', res.data.idToken);
           Cookie.set('expirationDate', expirationDate)
-
-          return this.$axios.$post('http://localhost:3000/api/track-data', {data: 'Authenticated!'});
+          return this.$axios.$post(trackUrl, {data: 'Authenticated!'});
           // vuexContext.dispatch('setLogoutTimer', res.data.expiresIn * 1000);
         }).catch(e => console.log(e))
         
