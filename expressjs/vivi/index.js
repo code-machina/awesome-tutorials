@@ -12,6 +12,7 @@ const morgan = require('morgan');
 const customers = require('./routes/customers');
 const genres = require('./routes/genres');
 const movies = require('./routes/movies');
+const rentals = require('./routes/rentals');
 
 // 유틸 모듈
 const { logger, loggerMiddleware } = require('./util');
@@ -39,6 +40,7 @@ app.use(morgan('combined'));
 app.use('/api/customers', customers);
 app.use('/api/genres', genres);
 app.use('/api/movies', movies);
+app.use('/api/rentals', rentals);
 
 logger('app', 'Configurating Routes is Successful ... ');
 
