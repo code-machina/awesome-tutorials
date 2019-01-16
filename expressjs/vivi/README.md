@@ -78,6 +78,10 @@ exports.validate = validateCustomer;
 |debug| tiny debugging tools for development of node.js |
 |moment-timezone|`npm install moment-timezone` 타임존 설정할 때 유용|
 |morgan|HTTP Request Logger middleware for node.js|
+|joi-objectid| Validation for invalid ObjectId which is provided by user |
+|lodash| javascript 객체 작업을 한결 수월하게 해주는 모듈 |
+|joi-password-complexity| joi 모듈의 확장으로 패스워드 복잡도 설정 가능 |
+|bcrypt| 패스워드 해쉬에 사용 |
 
 ## Language Support Modules
 
@@ -130,8 +134,36 @@ HTTP Request 를 로깅할 때 사용하는 미들웨어 모듈이다.
 
 ```javascript
 morgan('tiny')
-````
+```
 
+## joi-objectid
+
+joi 모듈에 mongoose 의 objectid 를 검증하는 확장 모듈이다. 소스의 index.js 파일에 아래와 같이 선언한 뒤에 별도의 선언 없이 사용 가능하다.
+
+```javascript
+/****** Filename  : src/index.js  *****/
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
+
+/// 생략 ... 
+```
+
+## lodash
+
+> A modern JavaScript utility library delivering modularity, performance & extras.
+
+```javascript
+const _ = require('lodash'); // 전통적으로 _(underscore) 로 변수명을 정의 (사용하기 편함)
+
+// pick 메서드를 통해서 원하는 property 를 뽑아내어 객체를 만들 수 있음
+let user = new User({
+  name: req.body.name,
+  email: req.body.email,
+  password: req.body.password
+})
+user = _.pick(user, ['name', 'email', 'password']);
+
+```
 
 # How to test 
 
@@ -151,4 +183,15 @@ postman 을 통해서 REST API 를 테스트하고 있습니다. 그러나 다�
 jshint 를 사용할 때, Async, Await 를 사용할 경우 에러가 발생한다. 코딩할 때 거슬리기 때문에 `JSHINT IGNORE` 를 사용하여 경고를 해제한다.
 
 - [StackOverflow : does-jshint-support-async-await](https://stackoverflow.com/questions/42637630/does-jshint-support-async-await)
+
+# 로그인 기능 : User Modeling
+
+로그인 사용자 모델을 모델링해보자.
+
+```
+email: {
+  type: string 
+
+}
+```
 

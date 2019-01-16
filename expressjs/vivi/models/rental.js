@@ -1,4 +1,7 @@
 const Joi = require('joi');
+// require('joi-objectid')(Joi) 는 함수를 리턴한다.
+// Joi.objectId 에 이 함수를 할당한다.
+// Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
 
 const rentalSchema = new mongoose.Schema({
@@ -59,11 +62,11 @@ const rentalSchema = new mongoose.Schema({
 });
 
 const Rental = mongoose.model('Rental', rentalSchema);
-
+// FIXME: Joi.string().required() 를 Joi.objectId().required() 로 변경
 function validateRental(rental) {
     const schema = {
-        movieId: Joi.string().required(),
-        customerId: Joi.string().required()
+        movieId: Joi.objectId().required(),
+        customerId: Joi.objectId().required()
     };
 
     return Joi.validate(rental, schema);

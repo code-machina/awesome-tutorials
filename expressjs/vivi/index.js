@@ -7,12 +7,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 // HTTP Request Logging middleware
 const morgan = require('morgan');
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 
 // 라우트 모듈
 const customers = require('./routes/customers');
 const genres = require('./routes/genres');
 const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 // 유틸 모듈
 const { logger, loggerMiddleware } = require('./util');
@@ -41,6 +45,8 @@ app.use('/api/customers', customers);
 app.use('/api/genres', genres);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 logger('app', 'Configurating Routes is Successful ... ');
 
