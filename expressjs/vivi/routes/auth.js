@@ -1,3 +1,5 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const _ = require('lodash'); // underscore is clean & pretty convention...
 const { logger } = require('../util');
 const { User } = require('../models/user');
@@ -22,8 +24,12 @@ router.post('/', async (req, res) => {
 
   const validPassword = await bcrypt.compare(req.body.password, user.password);
   if(!validPassword) return res.status(400).send('Invalid email or password.');
+  
+  // 아래와 같이 코딩하는 것이 자연스럽다.
+  const token = user.generateAuthToken();
+  // const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
 
-  res.send(true);
+  res.send(token);
 });
 
 /** jshint ignore:end */
@@ -31,7 +37,7 @@ router.post('/', async (req, res) => {
 function validate(req){
   const schema = {
     email: Joi.string().min(5).max(255).required().email(),
-    password: Joi.string().min(5).max(255).required(),    
+    password: Joi.string().min(5).max(255).required(),
   }
 
   return Joi.validate(req, schema);

@@ -3,6 +3,7 @@
  */
 
 // 기본 모듈
+const config = require('config');
 const express = require('express');
 const mongoose = require('mongoose');
 // HTTP Request Logging middleware
@@ -23,6 +24,11 @@ const { logger, loggerMiddleware } = require('./util');
 
 // express 인스턴스
 const app = express();
+
+if(!config.get('jwtPrivateKey')) {
+  logger('app', 'jwtPrivateKey is not defined [CRITICAL_ERROR]');
+  process.exit(1);
+}
 
 // MongoDB 연결
 // TODO: mongoDB connection string 을 configuration 파일을 통해서 설정

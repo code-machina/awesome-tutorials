@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const _ = require('lodash'); // underscore is clean & pretty convention...
 const { logger } = require('../util');
 const { User, validate } = require('../models/user');
@@ -18,7 +20,7 @@ router.post('/', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   // FIXME: 보안상의 이슈가 있을 수 있으므로 정책을 수정할 것.
   if(user) return res.status(400).send('User Already Registered. ');
-  
+
   user = new User({
     name : req.body.name,
     email : req.body.email,
@@ -39,9 +41,14 @@ router.post('/', async (req, res) => {
   //   name: user.name,
   //   email: user.email
   // });
-  res.send(_.pick(user, ['name', 'email']));
+  // const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
+  const token = user.generateAuthToken();
+  res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 });
 
 /** jshint ignore:end */
+
+// Information Expert Principle 
+
 
 module.exports = router;

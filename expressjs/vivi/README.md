@@ -82,6 +82,8 @@ exports.validate = validateCustomer;
 |lodash| javascript 객체 작업을 한결 수월하게 해주는 모듈 |
 |joi-password-complexity| joi 모듈의 확장으로 패스워드 복잡도 설정 가능 |
 |bcrypt| 패스워드 해쉬에 사용 |
+|jsonwebtoken| JWT 모듈 |
+|||
 
 ## Language Support Modules
 
@@ -165,6 +167,35 @@ user = _.pick(user, ['name', 'email', 'password']);
 
 ```
 
+## bcrypt 
+
+패스워드를 Hash화 하는 모듈, 설치를 위해 빌드 툴이 필요하며 정상 설치 후에 `bcrypt` 모듈을 설치한다.
+
+```bash
+npm install --global --production windows-build-tools
+npm install bcrypt --save
+```
+
+```javascript
+const salt = await bcrypt.genSalt(10);
+const hashed = await bcrypt.hash('1234', salt);
+```
+
+## jsonwebtoken
+
+일명 JWT 토큰을 구현해주는 모듈
+
+```bash
+npm i --save jsonwebtoken
+```
+
+### set header as jwtwebotken
+
+```javascript
+const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
+res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+```
+
 # How to test 
 
 postman 을 통해서 REST API 를 테스트하고 있습니다. 그러나 다른 테스트 모듈이 필요할지도 모르겠습니다.
@@ -188,10 +219,52 @@ jshint 를 사용할 때, Async, Await 를 사용할 경우 에러가 발생한�
 
 로그인 사용자 모델을 모델링해보자.
 
-```
+```json
 email: {
   type: string 
 
 }
 ```
 
+# Information Expert Principle
+
+mongoose 모듈을 이용해서 user 마다 jwt token 을 발생하는 메서드를 아래와 같이 정의한다. 아래와 같은 방식은 매우 효율적인 방식으로 
+권장 된다. (꿀팁 감사용~ :) )
+
+```javascript
+/** models/user.js */
+const userSchema = new mongoose.Schema({
+  // 사용자 이름
+  name: { 
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 50
+  },
+  email: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 1024
+  }
+});
+
+userSchema.methods.generateAuthToken = function() {
+  const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+  return token;
+};
+
+// 생략
+
+/** routes/users.js */
+// 아래와 같이 토큰을 생성할 때에 MongoDB 에서 Fetched 된 객체에 generateAuthToken 메서드를 호출하여 jwt 토큰을 자연스럽게 생성가능하다.
+const token = user.generateAuthToken();
+res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+```

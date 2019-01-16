@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const { Genre, validate } = require('../models/genre');
 const express = require('express');
 
@@ -13,8 +14,9 @@ router.get('/', async (req, res) => {
   res.send(genres);
 });
 
-// Create
-router.post('/', async (req, res) => {
+// Create 
+// FIXME: middleware 함수를 추가하였음
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if(error) return res.status(400).send(error.details[0].message);
 

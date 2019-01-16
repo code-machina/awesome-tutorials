@@ -1,8 +1,9 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
-// ODM 객체를 생성
-const User = mongoose.model('User', new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   // 사용자 이름
   name: { 
     type: String,
@@ -23,7 +24,20 @@ const User = mongoose.model('User', new mongoose.Schema({
     minlength: 5,
     maxlength: 1024
   }
-}));
+});
+
+userSchema.methods.generateAuthToken = function() {
+  const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+  return token;
+};
+
+// arrow function 은 this 객체를 참조할 수 없음에 주의
+// userSchema.methods.generateAuthToken = () => {
+//   const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+// };
+
+// ODM 객체를 생성
+const User = mongoose.model('User', userSchema);
 
 // 입력된 User 객체 데이터의 유효성을 검증
 function validateUser(user) {
