@@ -83,7 +83,9 @@ exports.validate = validateCustomer;
 |joi-password-complexity| joi 모듈의 확장으로 패스워드 복잡도 설정 가능 |
 |bcrypt| 패스워드 해쉬에 사용 |
 |jsonwebtoken| JWT 모듈 |
-|||
+|express-async-errors| 비동기 express 에러 핸들링를 전역적으로 추가 |
+|winston| logging module |
+|winston-mongodb| logging module that specialized in MongoDB Persistence |
 
 ## Language Support Modules
 
@@ -196,6 +198,135 @@ const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
 res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 ```
 
+## express-async-errors 
+
+비동기로 동작하는 route handler 의 에러를 처리하기 위해 asyncMiddleware 를 작성하고 이 함수가 기존의 handler 함수를 
+전달 받아 실행하는 것을 구현하였다. 내용은 아래의 코드와 같다.
+
+만약, MongoDB 등의 Database Server 가 중단되는 상황 혹은 express 자체의 에러가 발생하는 경우 `asyncMiddleware` 와 정의한
+오류 처리 로직을 통해 에러를 처리하는 미들웨어(가장 마지막에 선언된 미들웨어)에서 `Something failed.` 라는 메시지를 남기게 된다.
+
+그러나 모든 핸들러(`handler`)에 `asyncMiddleware`를 작성하는 것은 그다지 바람직하지 않은 선택이다. `express-async-erros` 모듈은 직접 에러를 처리하지 않는다. 대신 `asyncMiddleware` 와 같이 비동기 에러 처리를 처리하기 위한 wrapping 함수를 사용하지 않고 동일한 에러처리 로직을 구현할 수 있도록 도와 준다. `require('express-async-errors');` 코드를 `/index.js` 파일의 맨 상단에 기입해 주면된다.
+
+이후에는 우리가 정의하는 `./middleware/error.js` 모듈로 에러를 전달하게 되고 가장 마지막 미들웨어인 이 함수는 전달 받은 에러를 처리한다.
+
+- 비동기 에러 처리를 위해 새로운 함수를 정의하고 이 레퍼런스를 리턴하는 함수를 만들었다. 이는 파이썬과 비슷한 방식의 처리이다. (decorator 방식)
+
+```javascript
+/* file: middleware/async.js */
+module.exports = function asyncMiddleware(handler) {
+  return async (req, res, next) => {
+    try {
+      await handler(req, res);
+    }
+    catch(ex){
+      next(ex);
+    }
+  };
+}
+```
+
+- 영화 장르에 대한 리스트를 요청 시 MongoDB 서비스가 구동 중이 아니라면 에러가 발생할 것이다. 이 에러를 처리하기 위해 async.js 파일에서 정의한 에러 핸들링 템플릿 코드를 아래와 같이 사용한다.
+
+```javascript
+/* file: routes/genres.js */
+
+router.get('/', asyncMiddleware(async (req, res) => {
+  const genres = await Genre.find().sort('name')
+  res.send(genres);
+}));
+```
+
+- 미들웨어 정의는 에러 처리 및 메시지 출력, 그리고 로깅 등의 기능에 필수적이다.
+
+```javascript
+/* file: middleware/error.js */
+module.exports = function(err, req, res, next) {
+  // Log the exception
+  res.status(500).send('Something failed.');
+};
+```
+
+- 메인 코드에서는 정의한 미들웨어를 아래와 같이 붙인다.
+
+```javascript
+/* file: /index.js */
+// At the top of this document.
+const error = require('./middleware/error');
+
+// 생략 ....
+
+app.use('/api/rentals', rentals);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
+app.use(error); // Always PUT Error Handling Middleware at the end of routes.
+```
+
+- `express-async-errors`를 사용하게 되면 결국은 이렇게 된다.
+
+```javascript
+require('express-async-errors');
+// 생략 ... 
+app.use(error);
+// The end of code bunch that register middleware and route handler.
+```
+
+## winston, winston-mongodb
+
+Logging Module to log any error message from express application. so we can check all the error message from logging file.
+Now Let's see the detailed code in the below code section. 
+
+- CUATION
+  - winston module have been changed greatly. So some documents wouldn't match with current version. therefore always check the public documentation so that you won't be confused with some subtle differences.
+
+
+```javascript
+/* file: /index.js */
+
+const winston = require('winston'); // logging module to file.
+// CAUTION:: You must import the winston-mongodb module after importing winston module.
+require('winston-mongodb'); // enabled mongodb Transports Feature...
+
+// Skipping irrelevant code ... 
+
+// files object enable winston to log errors into file.
+const files = new winston.transports.File({ filename: 'winston-logfile.log' });
+// console object enable winston to log errors into terminal
+const console = new winston.transports.Console();
+// console object enable winston to log errors into mongodb
+const mongodb = new winston.transports.MongoDB( {db: 'mongodb://localhost/vivi', useNewUrlParser: true});
+winston.add(files);
+winston.add(mongodb);
+
+// Skipping irrelevant code ... 
+
+```
+
+```javascript
+/* file: middleware/error.js */
+const winston = require('winston');
+
+module.exports = function(err, req, res, next) {
+  // Log the exception
+  // winston.log('error', err.message);
+  // or, // winston.error(err.message, err); // with metadata
+  winston.error(err.message, err);
+
+  // error
+  // warn
+  // info 
+  // verbose
+  // debug
+  // silly
+
+  res.status(500).send('Something failed.');
+};
+```
+
+## 
+
+
+
 # How to test 
 
 postman 을 통해서 REST API 를 테스트하고 있습니다. 그러나 다른 테스트 모듈이 필요할지도 모르겠습니다.
@@ -267,4 +398,75 @@ userSchema.methods.generateAuthToken = function() {
 // 아래와 같이 토큰을 생성할 때에 MongoDB 에서 Fetched 된 객체에 generateAuthToken 메서드를 호출하여 jwt 토큰을 자연스럽게 생성가능하다.
 const token = user.generateAuthToken();
 res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+```
+
+# Authentication using JWT(jsonwebtokens)
+
+인증을 위해 로그인 그리고 로그 아웃을 구현해야 한다. 그러나 JWT 를 사용할 경우 DB 에 JWT 토큰을 저장하지 않는 것을 가이드한다. 따라서, 다음의 조건을 통해
+유효하지 않은 정보의 입력에 대응한다. 
+
+- 로그 아웃
+  - 기능을 구현하지 않음 (토큰에 대한 어떠한 정보도 서버에 저장하지 않는다.)
+- Token Expiration 
+  - Expiration 에 대한 정책(Policy)를 설정하여 필터에 반영한다.
+- 로그인
+  - 유효한 인증 정보가 입력될 경우 JWT 토큰을 발행한다.
+- 권한
+  - 슈퍼 관리자는 매우 막강한 존재이다. 새로운 권한을 생성하고 이를 타 사용자에게 자유롭게 할당할 수 있다. 
+  - 권한 관리는 매우 중요한 요소이다. 특히 특정 페이지에 접근할 때 이것이 중요하다.
+  - 권한의 종류 
+    - READ
+    - WRITE/MODIFY
+  - 그렇다면 권한은 어떻게 관리되어야 하는가?
+
+|사용자|권한||
+|:---:|:---:|:---:|
+|machi18na|SUPERADMIN|권한 부여 관리자, 승인 관리자|
+|machi19na|ADMIN|국지적 권한 부여 관리자, 승인 관리자|
+
+SUPERADMIN 은 권한만을 부여할 수 있는 관리자이다. 이는 즉 siteadmin 을 의미한다. siteadmin 은 별도의 행위를 할 수 없다.
+
+```javascript
+[
+  {
+    name: "machi18na",
+    role: [
+      { 
+        _id:ObjectId(/*....*/),
+        name: 'SUPERADMIN'
+      }, 
+
+    ], // 
+  }, 
+  {
+    name: "machi19na",
+    role: [
+      {
+        _id:ObjectId(/*....*/),
+        name: ""
+      }
+    ]
+  }
+]
+```
+
+
+# How to handle uncauted exception
+
+우리는 전역적인 에러 핸들러를 등록하여 예기치 않은 상황에 대비할 수 있습니다. 
+즉, 모든 에러를 수집하고 담는 코드를 작성하여 이를 기반으로 디버깅 작업이 진행합니다. 
+
+이를 위해서는 `process` 객체를 사용하여 `uncaughtException` 을 처리해야 하며 리스너로 anonymous function 을 등록합니다. 위에서 소개한 `winston`은 에러 로깅을 수행합니다. 
+
+우리가 만약 중대한 에러가 발생할 경우 에러 처리를 하지 않고 어플리케이션을 셧다운한다고 가정해봅니다. 이 때 가장 중요한 문제점은 처리되지 않은 에러로 인해서 디버깅 능력과 모니터링 능력을 잃는 것입니다. 즉, 디버깅을 할 정보가 부족한 것이죠 이 때에는 디버깅 정보를 쌓아두고 사용자 경험의 악화를 감수할 필요가 있다고 생각됩니다. 
+
+```javascript
+/* file: /index.js */
+
+process.on('uncaughtException', (ex) => {
+  console.log(" WE GOT AN UNCAUGHTED EXCEPTION .... ");
+  winston.error(ex.message, ex);
+});
+
+throw new Error("Uncaughted Exception is occured.....");
 ```

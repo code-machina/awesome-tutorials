@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 
 /* jshint ignore:start */
-// Create User
+// Login Process, Authentication
 router.post('/', async (req, res) => {
   const { error } = validate(req.body);
   if(error) return res.status(400).send(error.details[0].message);

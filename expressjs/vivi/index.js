@@ -3,6 +3,10 @@
  */
 
 // 기본 모듈
+require('express-async-errors');
+const winston = require('winston'); // logging module to file.
+require('winston-mongodb'); // enabled mongodb Transports Feature...
+const error = require('./middleware/error');
 const config = require('config');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -24,6 +28,21 @@ const { logger, loggerMiddleware } = require('./util');
 
 // express 인스턴스
 const app = express();
+
+// winston.add(new winston.transports.File(), {filename: 'logfile.log'});
+const files = new winston.transports.File({ filename: 'winston-logfile.log' });
+const console = new winston.transports.Console();
+const mongodb = new winston.transports.MongoDB( {db: 'mongodb://localhost/vivi', useNewUrlParser: true});
+winston.add(files);
+winston.add(mongodb);
+
+
+process.on('uncaughtException', (ex) => {
+  console.log(" WE GOT AN UNCAUGHTED EXCEPTION .... ");
+  winston.error(ex.message, ex);
+});
+
+throw new Error("Uncaughted Exception is occured.....");
 
 if(!config.get('jwtPrivateKey')) {
   logger('app', 'jwtPrivateKey is not defined [CRITICAL_ERROR]');
@@ -53,6 +72,7 @@ app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use(error); // Always PUT Error Handling Middleware at the end of routes.
 
 logger('app', 'Configurating Routes is Successful ... ');
 

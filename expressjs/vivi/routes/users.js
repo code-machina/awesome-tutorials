@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const _ = require('lodash'); // underscore is clean & pretty convention...
@@ -11,6 +12,14 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 
 /* jshint ignore:start */
+
+router.get('/me', auth, async (req, res) => {
+  const user = await User.findOne({_id: req.user._id}).select('-password');
+  if(!user) return res.status(400).send('Invalid User.');
+  
+  res.send(user);
+});
+
 // Create User
 router.post('/', async (req, res) => {
   const { error } = validate(req.body);
