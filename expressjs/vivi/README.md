@@ -3,6 +3,15 @@
 vivi is a tutorial project for summarizing a basic concept of express.js.
 vivi 는 express.js 의 기본 개념을 요약하기 위한 튜토리얼 프로젝트입니다.
 
+## How to start project
+
+디버그 설정 및 JWT Private Key 설정
+
+```bash
+set jwtPrivateKey=testjwtprivatekey
+set debug=app*
+```
+
 ## Express Project Basic Structure
 
 ### Main Module
@@ -86,6 +95,9 @@ exports.validate = validateCustomer;
 |express-async-errors| 비동기 express 에러 핸들링를 전역적으로 추가 |
 |winston| logging module |
 |winston-mongodb| logging module that specialized in MongoDB Persistence |
+|supertest| for integration test|
+|helmet| 알려진 http 취약점을 보완하는 미들웨어|
+|compression| compress the http response (용량을 줄여준다.) |
 
 ## Language Support Modules
 
@@ -169,7 +181,7 @@ user = _.pick(user, ['name', 'email', 'password']);
 
 ```
 
-## bcrypt 
+## bcrypt
 
 패스워드를 Hash화 하는 모듈, 설치를 위해 빌드 툴이 필요하며 정상 설치 후에 `bcrypt` 모듈을 설치한다.
 
@@ -198,7 +210,7 @@ const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
 res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 ```
 
-## express-async-errors 
+## express-async-errors
 
 비동기로 동작하는 route handler 의 에러를 처리하기 위해 asyncMiddleware 를 작성하고 이 함수가 기존의 handler 함수를 
 전달 받아 실행하는 것을 구현하였다. 내용은 아래의 코드와 같다.
@@ -323,7 +335,21 @@ module.exports = function(err, req, res, next) {
 };
 ```
 
-## 
+## helmet
+
+production 준비에 앞서 helmet 을 설치한다. HTTPS 와 관련된 취약점을 보완해준다.
+
+```bash
+npm i helmet
+```
+
+## compression
+
+마찬가지로 production 준비에 앞서 compression 을 설치한다. client 에 전송하는 HTTP Response 를 압축해준다. 즉, 전송 용량이 작아짐을 의미한다.
+
+```bash
+npm i compression
+```
 
 
 
@@ -470,3 +496,27 @@ process.on('uncaughtException', (ex) => {
 
 throw new Error("Uncaughted Exception is occured.....");
 ```
+
+# How to test properly
+
+아래와 같은 설정을 통해 jest 테스트 환경에서 config 모듈을 통해 `jwtPrivateKey` 값을 읽어올 수 있다.
+
+> WARNING: NODE_ENV value of 'test' did not match any deployment config file names
+
+- create `/config/test.json` and declare below json object.
+
+```json
+{
+  "jwtPrivateKey": "1234"
+}
+```
+
+# How to do integration test
+
+Install supertest as development dependency.
+
+# Heroku 
+
+- Create Heroku Account
+- Install Heroku CLI
+  - https://devcenter.heroku.com/articles/heroku-cli#download-and-install

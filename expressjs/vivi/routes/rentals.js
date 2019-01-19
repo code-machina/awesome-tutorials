@@ -1,10 +1,12 @@
+/*eslint arrow-parens: [2, "as-needed", { "requireForBlockBody": true }]*/
+/*eslint-env es6*/
+const mongoose = require('mongoose');
+const Fawn = require('fawn');
+const express = require('express');
+
 const { Rental, validate } = require('../models/rental');
 const { Movie } = require('../models/movie');
 const { Customer } = require('../models/customer');
-const mongoose = require('mongoose');
-const Fawn = require('fawn');
-
-const express = require('express');
 
 const router = express.Router();
 
@@ -17,11 +19,11 @@ Fawn.init(mongoose);
 // Get List of rental
 
 router.get('/', async (req, res) => {
-    // const {error} = validate(req.body);
-    // if(error) return res.status(400).send(error.details[0].message);
-    
-    const rentals = await Rental.find().sort('movie.title');
-    res.send(rentals);
+  // const {error} = validate(req.body);
+  // if(error) return res.status(400).send(error.details[0].message);
+  
+  const rentals = await Rental.find().sort('movie.title');
+  res.send(rentals);
 });
 
 // Create New Rental

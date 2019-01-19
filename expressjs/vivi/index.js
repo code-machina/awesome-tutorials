@@ -3,79 +3,28 @@
  */
 
 // 기본 모듈
-require('express-async-errors');
-const winston = require('winston'); // logging module to file.
-require('winston-mongodb'); // enabled mongodb Transports Feature...
-const error = require('./middleware/error');
-const config = require('config');
+const winston = require('winston');
 const express = require('express');
-const mongoose = require('mongoose');
-// HTTP Request Logging middleware
-const morgan = require('morgan');
-const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi);
+const app = express(); // express 인스턴스
 
-// 라우트 모듈
-const customers = require('./routes/customers');
-const genres = require('./routes/genres');
-const movies = require('./routes/movies');
-const rentals = require('./routes/rentals');
-const users = require('./routes/users');
-const auth = require('./routes/auth');
+require('./startup/logging')();
+require('./startup/routes')(app);
+require('./startup/db')();
+require('./startup/config')();
+require('./startup/validation')();
+require('./startup/prod')(app);
 
 // 유틸 모듈
 const { logger, loggerMiddleware } = require('./util');
 
-// express 인스턴스
-const app = express();
+//throw new Error("Uncaughted Exception is occured.....");
 
-// winston.add(new winston.transports.File(), {filename: 'logfile.log'});
-const files = new winston.transports.File({ filename: 'winston-logfile.log' });
-const console = new winston.transports.Console();
-const mongodb = new winston.transports.MongoDB( {db: 'mongodb://localhost/vivi', useNewUrlParser: true});
-winston.add(files);
-winston.add(mongodb);
-
-
-process.on('uncaughtException', (ex) => {
-  console.log(" WE GOT AN UNCAUGHTED EXCEPTION .... ");
-  winston.error(ex.message, ex);
-});
-
-throw new Error("Uncaughted Exception is occured.....");
-
-if(!config.get('jwtPrivateKey')) {
-  logger('app', 'jwtPrivateKey is not defined [CRITICAL_ERROR]');
-  process.exit(1);
-}
-
-// MongoDB 연결
-// TODO: mongoDB connection string 을 configuration 파일을 통해서 설정
-mongoose.connect('mongodb://localhost/vivi', { useNewUrlParser: true })
-  .then(() => logger('db', 'Connected MongoDB ....'))
-  // .then(() => dbdebug('MongoDB 연결 ... '))
-  .catch(err => logger('db', 'Failed to connect MongoDB ....'));
-
-// express.json() 
-app.use(express.json());
-
-// middleware to log every request by user.
-// app.use(loggerMiddleware);
-// ::1 - - [15/Jan/2019:03:17:32 +0000] "GET /api/genres/5c3d4194fc34ca1004de63a62 HTTP/1.1" 404 33 "-" "PostmanRuntime/7.6.0"
-app.use(morgan('combined')); 
-
-
-/* routes 등록 */
-app.use('/api/customers', customers);
-app.use('/api/genres', genres);
-app.use('/api/movies', movies);
-app.use('/api/rentals', rentals);
-app.use('/api/users', users);
-app.use('/api/auth', auth);
-app.use(error); // Always PUT Error Handling Middleware at the end of routes.
-
-logger('app', 'Configurating Routes is Successful ... ');
+// Promise.Reject 오류 처리
+// const p = Promise.reject(new Error('Something failed miserably..'));
+// p.then(() => console.log('Done.'));
 
 /* app listening on ${express.env.PORT} */
 const port = process.env.PORT || 3000;
-app.listen(port, () => logger('app', `Listening on port ${port}... `));
+const server = app.listen(port, () => winston.info(`Listening on port ${port}... `));
+
+module.exports = server;

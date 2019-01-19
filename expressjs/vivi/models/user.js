@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+// 아래와 같은 함수가 unit test 대상이된다.
 userSchema.methods.generateAuthToken = function() {
   const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
   return token;

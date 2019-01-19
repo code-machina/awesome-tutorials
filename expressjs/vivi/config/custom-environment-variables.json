@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "vivi_jwtPrivateKey"
+  "jwtPrivateKey": "vivi_jwtPrivateKey",
+  "db": "vivi_db"
 }
