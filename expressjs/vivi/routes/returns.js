@@ -46,7 +46,6 @@ router.post('/', [ auth, validate(validateReturn) ], async (req, res) => {
   return res.send(rental);
 });
 
-
 function validateReturn(returned) {
   const scheme = {
     customerId: Joi.objectId().required(),
