@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   await user.save(_.pick(req.body, ['name', 'email', 'password']));
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
-
+  
   await user.save();
   logger('app',`${user} is saved successfully ... `)
 
