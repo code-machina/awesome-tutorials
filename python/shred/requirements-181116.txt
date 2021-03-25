@@ -25,7 +25,7 @@ python-crontab==2.3.5
 python-dateutil==2.7.5
 pytz==2015.4
 pywin32==224
-PyYAML==3.13
+PyYAML==5.4
 redis==2.10.3
 requests==2.7.0
 six==1.11.0
