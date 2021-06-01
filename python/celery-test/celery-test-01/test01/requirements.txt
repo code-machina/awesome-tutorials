@@ -33,7 +33,7 @@ six==1.11.0
 SQLAlchemy==1.2.14
 tornado==5.1.1
 typed-ast==1.1.0
-urllib3==1.24.1
+urllib3==1.26.5
 vine==1.1.4
 wmi-client-wrapper-py3==2018.3
 Wrapper==1.1.0b1
