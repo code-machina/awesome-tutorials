@@ -2,7 +2,7 @@ amqp==1.4.6
 anyjson==0.3.3
 billiard==3.3.0.20
 bson==0.5.7
-celery==3.1.18
+celery==5.2.2
 Django==1.8.2
 django-timezone-field==3.0
 kafka-python==1.4.3
