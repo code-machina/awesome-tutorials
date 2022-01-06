@@ -3,7 +3,7 @@ astroid==2.0.4
 Babel==2.6.0
 barcodenumber==0.2.1
 billiard==3.5.0.4
-celery==4.2.0
+celery==5.2.2
 certifi==2018.10.15
 chardet==3.0.4
 colorama==0.4.0
